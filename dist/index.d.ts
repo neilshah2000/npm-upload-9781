@@ -150,13 +150,14 @@ export interface Address {
 }
 
 export interface Coin {
-  coinid: string;
-  address: string;
-  mxaddress: string;
-  amount: string;
-  tokenid: string;
-  floating: boolean;
-  storestate: boolean;
+    coinid: string
+    address: string
+    mxaddress: string
+    amount: string
+    tokenid: string
+    floating: boolean
+    storestate: boolean
+    created: string
 }
 
 export interface MMRProof {

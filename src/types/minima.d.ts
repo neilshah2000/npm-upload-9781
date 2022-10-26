@@ -146,7 +146,7 @@ export interface Address {
 export interface Coin {
     coinid: string
     address: string
-    mxaddress: string
+    miniaddress: string
     amount: string
     tokenid: string
     floating: boolean
