@@ -14,7 +14,7 @@ Import libs like
 `events` - Minima Events helper lib.  
 `commands` - Minima Commands helper lib.  
 `sql` - Minima Sql helper lib.  
-`MDS` - Paddy's code MDS.js library. Don't need to use because everything is wrapped in the events, commands and sql libs. But it's here if you need an escape hatch.  
+`MDS` - Paddy's core MDS.js library. Don't need to use because everything is wrapped in the events, commands and sql libs. But it's here if you need an escape hatch.  
 `Decimal` - Helper libs use Decimal.js for floating point numbers. Use this import rather than import Decimal.js directly so your app code and lib code is on the same version.  
 
 ## TODO
