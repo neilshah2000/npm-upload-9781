@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.events = void 0;
 var mds_1 = require("../mds");
 //////////////////////// empty functions before registration //////////////////////
@@ -10,7 +10,7 @@ var whenMining = function (d) {
     console.log("MINIMG event ... please resgister custom callback", d);
 };
 var whenMaxima = function (d) {
-    console.log('MAXIMA event ... please resgister custom callback', d);
+    console.log("MAXIMA event ... please resgister custom callback", d);
 };
 var whenNewBalance = function (d) {
     console.log("NEW BALANCE event ... please resgister custom callback", d);
@@ -29,30 +29,30 @@ var initializeMinima = function () {
     mds_1.MDS.init(function (nodeEvent) {
         console.log(nodeEvent);
         switch (nodeEvent.event) {
-            case 'inited':
+            case "inited":
                 whenInit();
                 break;
-            case 'NEWBLOCK':
+            case "NEWBLOCK":
                 var newBlockData = nodeEvent.data;
                 whenNewBlock(newBlockData);
                 break;
-            case 'MINING':
+            case "MINING":
                 var minimgData = nodeEvent.data;
                 whenMining(minimgData);
                 break;
-            case 'MAXIMA':
+            case "MAXIMA":
                 var maximaData = nodeEvent.data;
                 whenMaxima(maximaData);
                 break;
-            case 'NEWBALANCE':
+            case "NEWBALANCE":
                 var newBalanceData = nodeEvent.data;
                 whenNewBalance(newBalanceData);
                 break;
-            case 'MINIMALOG':
+            case "MINIMALOG":
                 var minimaLogeData = nodeEvent.data;
                 whenMinimaLog(minimaLogeData);
                 break;
-            case 'MDSCOMMS':
+            case "MDSCOMMS":
                 var commsData = nodeEvent.data;
                 whenComms(commsData);
                 break;
@@ -94,5 +94,5 @@ exports.events = {
     onNewBalance: onNewBalance,
     onInit: onInit,
     onMinimaLog: onMinimaLog,
-    onComms: onComms
+    onComms: onComms,
 };

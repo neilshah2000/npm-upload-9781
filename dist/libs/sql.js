@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.sql = void 0;
 var mds_1 = require("../mds");
 function executeQuery(query) {
@@ -16,5 +16,5 @@ function executeQuery(query) {
     });
 }
 exports.sql = {
-    executeQuery: executeQuery
+    executeQuery: executeQuery,
 };

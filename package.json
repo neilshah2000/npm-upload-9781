@@ -1,18 +1,26 @@
 {
-  "name": "npm-upload-9781",
-  "version": "1.0.6",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc index.ts --lib \"DOM,ES2015\""
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "decimal.js": "^10.4.2"
-  },
-  "devDependencies": {
-    "typescript": "^4.8.4"
-  }
+    "name": "npm-upload-9781",
+    "version": "1.0.24",
+    "description": "",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "tsc": "tsc"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "decimal.js": "^10.4.2"
+    },
+    "devDependencies": {
+        "typescript": "^4.8.4"
+    },
+    "prettier": {
+        "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
+        "singleQuote": true,
+        "printWidth": 160
+    }
 }
