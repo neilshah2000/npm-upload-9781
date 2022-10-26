@@ -4,6 +4,11 @@
 ## About
 This module exposes the core MDS library, plus some helper libs - events, commands and sql
 
+## Import
+
+Import libs like
+`import { Decimal, commands, sql, MDS, Coin, Token, TransactionListItem } from 'npm-upload-9781'`
+
 ## Exposes
 
 `events` - Minima Events helper lib.  
