@@ -6,7 +6,7 @@ This module exposes the core MDS library, plus some helper libs - events, comman
 
 ## Import
 
-Import libs like
+Import libs like   
 `import { Decimal, commands, sql, MDS, Coin, Token, TransactionListItem } from 'npm-upload-9781'`
 
 ## Exposes
@@ -23,6 +23,6 @@ Import libs like
 - Check existing type info and add more
 
 
-# Sample App
+## Sample App
 
 [Using this library in a react javascript app](https://github.com/neilshah2000/npm-mds-install-test)
