@@ -158,6 +158,10 @@ export interface Coin {
     floating: boolean
     storestate: boolean
     created: string
+    mmrentry: string
+    token: Object
+    state: []
+    spent: boolean
 }
 
 export interface MMRProof {
