@@ -28,6 +28,7 @@ Import libs like
 - Implement all methods in commands
 - Update command methods with tsdoc annotation
 - Check existing type info and add more
+- Update events with latest minima
 
 
 ## Sample App
