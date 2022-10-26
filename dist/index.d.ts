@@ -155,7 +155,6 @@ export interface Coin {
     miniaddress: string
     amount: string
     tokenid: string
-    floating: boolean
     storestate: boolean
     created: string
     mmrentry: string
