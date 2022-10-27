@@ -1,5 +1,5 @@
-import { MDS } from "../mds";
-import { Decimal } from "decimal.js";
+import { MDS } from '../mds'
+import { Decimal } from 'decimal.js'
 import { Address, Coin, TransactionListItem, Txpow } from './../types/minima'
 
 /**
@@ -209,7 +209,7 @@ type SendArgsTypes = {
  * Send Minima or Tokens to an address
  * @param address - Mx..|0x..
  * @param amount
- * @param multi - [address:amount,..]
+ * @param multi - ["address:amount",..]
  * @param tokenid
  * @param state
  * @param burn
@@ -221,7 +221,7 @@ const send = ({ address, amount, multi, tokenid, state, burn, split, debug, dryr
     let multiCmdStr = undefined
     if (multi !== undefined) {
         const multiString = multi.map((singleSend) => {
-            return singleSend.address + ':' + singleSend.amount
+            return `"${singleSend.address}:${singleSend.amount}"`
         })
         multiCmdStr = `[${multiString.join(',')}]`
     }

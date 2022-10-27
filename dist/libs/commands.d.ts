@@ -1,10 +1,18 @@
-import { Decimal } from "decimal.js";
-import { Address, Coin, TransactionListItem } from "./../types/minima";
+import { Decimal } from 'decimal.js';
+import { Address, Coin, TransactionListItem, Txpow } from './../types/minima';
 /**
  * (clean:true) - Show general status for Minima and clean RAM
  */
 declare type StatusArgsTypes = {
     clean?: boolean;
+};
+/**
+ * (txpowid:txpowid) (block:) (address:) - Search for a specific TxPoW
+ */
+declare type TxPowArgsTypes = {
+    txpowid: string;
+    block: number;
+    address: string;
 };
 /**
  * (relevant:true) (sendable:true) (coinid:) (amount:) (address:) (tokenid:) - Search for coins
@@ -22,29 +30,41 @@ declare type CoinsArgsTypes = {
  */
 declare type TokensArgsTypes = {
     tokenId?: string;
-    action?: "export" | "import";
+    action?: 'export' | 'import';
     data?: string;
 };
 /**
- * (address:) (confirmations:) - Show your total balance of Minima and tokens
+ * (action:list|new) - Get a list of all your public keys or create a new key
  */
+declare type KeysArgsTypes = {
+    action?: 'list' | 'new';
+};
+/**
+ * (address:) (amount:) (multi:[address:amount,..]) (tokenid:) (state:{}) (burn:) (split:) (debug:) (dryrun:) -
+ */
+declare type MultiArgsType = {
+    address: string;
+    amount: Decimal;
+};
+declare type SendArgsTypes = {
+    address?: string;
+    amount?: Decimal;
+    multi?: MultiArgsType[];
+    tokenid?: string;
+    state?: Object;
+    burn?: any;
+    split?: any;
+    debug?: any;
+    dryrun?: any;
+};
+declare type SendpollArgsTypes = {
+    action: 'add' | 'list' | 'remove';
+    uid: string;
+};
 declare type BalanceArgsTypes = {
     address?: string;
     confirmations?: number;
 };
-/**
- * [name:] [amount:] (decimals:) (script:) (state:{}) (signtoken:) (webvalidate:) (burn:) - Create a token. 'name' can be a JSON Object
- *
- * Create a custom token (coloured Minima Coins)
- * name - can be a STRING or JSON Object
- * decimals - specify how many decimal places the token will have (default 8, max 16)
- * script - add a custom script that must return TRUE when spending the token,
- * state variables - JSON object
- * signtoken - provide a public key to sign the token with,
- * webvalidate - provide a URL storing the tokenID for validation purposes
- * burn - amount to burn in the tokencreate txn
- *
- */
 declare type TokenCreateArgsTypes = {
     name: string | object;
     amount: number;
@@ -107,7 +127,7 @@ declare type TxnOutputArgsTypes = {
  */
 declare type TxnSignArgsTypes = {
     id: string;
-    publicKey: string | "auto";
+    publicKey: string | 'auto';
 };
 /**
  * [id:] (auto:true) (burn:) - Post a transaction. Automatically set the Scripts and MMR
@@ -136,7 +156,7 @@ declare type TxnExportArgsTypes = {
  * [action:info|setname|hosts|send|refresh] (name:) (id:)|(to:)|(publickey:) (application:) (data:) (logs:true|false) - Check your Maxima details, send a message / data, enable logs
  */
 declare type MaximaArgsTypes = {
-    action?: "info" | "setname" | "hosts" | "send" | "refresh";
+    action?: 'info' | 'setname' | 'hosts' | 'send' | 'refresh';
     name?: string;
     id?: number;
     to?: string;
@@ -149,7 +169,7 @@ declare type MaximaArgsTypes = {
  * (action:list|install|uninstall) (file:) (uid:) - MiniDAPP System management
  */
 declare type MdsArgsTypes = {
-    action?: "list" | "install" | "uninstall";
+    action?: 'list' | 'install' | 'uninstall';
     file?: string;
     uid?: string;
 };
@@ -160,13 +180,14 @@ export declare const commands: {
     burn: () => never;
     trace: () => never;
     hashtest: () => never;
-    txpow: () => never;
+    txpow: ({ txpowid, block, address }: TxPowArgsTypes) => Promise<Txpow>;
     coins: ({ relevant, sendable, coinId, amount, address, tokenId }?: CoinsArgsTypes) => Promise<Coin[]>;
     tokens: ({ tokenId, action, data }?: TokensArgsTypes) => Promise<any>;
-    keys: () => never;
-    getaddress: () => never;
+    keys: ({ action }: KeysArgsTypes) => Promise<any>;
+    getaddress: () => Promise<any>;
     newaddress: () => Promise<any>;
-    send: () => never;
+    send: ({ address, amount, multi, tokenid, state, burn, split, debug, dryrun }: SendArgsTypes) => Promise<any>;
+    sendpoll: ({ action, uid }: SendpollArgsTypes) => Promise<any>;
     balance: ({ address, confirmations }?: BalanceArgsTypes) => Promise<any>;
     tokencreate: ({ name, amount, decimals, script, state, signtoken, webvalidate, burn }: TokenCreateArgsTypes) => Promise<any>;
     tokenvalidate: () => never;
