@@ -1,9 +1,8 @@
 {
     "name": "npm-upload-9781",
-    "version": "1.0.31",
+    "version": "1.0.40",
     "description": "",
     "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
     "scripts": {
         "tsc": "tsc",
         "merge-minima-types": "cat ./src/types/minima.d.ts >> ./dist/index.d.ts",
