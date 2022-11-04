@@ -696,8 +696,24 @@ var commands;
     /**
      * [action:list|mls|add|remove|search] (contact:) (id:) (publickey:) - Manage your Maxima contacts
      */
-    commands.maxcontacts = function () {
-        throw 'Not yet implemented';
+    commands.maxcontacts = function (_a) {
+        var _b = _a.action, action = _b === void 0 ? 'list' : _b, contact = _a.contact, id = _a.id, publickey = _a.publickey;
+        var command = "maxcontacts " +
+            "".concat(buildArg('action', action), " ") +
+            "".concat(buildArg('contact', contact), " ") +
+            "".concat(buildArg('id', id), " ") +
+            "".concat(buildArg('publickey', publickey));
+        console.log('maxcontacts command: ', command);
+        return new Promise(function (resolve, reject) {
+            mds_1.MDS.cmd(command, function (res) {
+                if (res.status) {
+                    resolve(res.response);
+                }
+                else {
+                    reject(res);
+                }
+            });
+        });
     };
     /**
      * (uid:uid) [data:message] - Send a message over the network to one of your direct peers

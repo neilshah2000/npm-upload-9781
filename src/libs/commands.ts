@@ -851,11 +851,33 @@ export namespace commands {
         })
     }
 
+    type MaxcontactsArgsTypes = {
+        action: 'list' | 'mls' | 'add' | 'remove' | 'search'
+        contact?: string
+        id?: string
+        publickey?: string
+    }
     /**
      * [action:list|mls|add|remove|search] (contact:) (id:) (publickey:) - Manage your Maxima contacts
      */
-    export const maxcontacts = () => {
-        throw 'Not yet implemented'
+    export const maxcontacts = ({ action = 'list', contact, id, publickey }: MaxcontactsArgsTypes) => {
+        const command =
+            `maxcontacts ` +
+            `${buildArg('action', action)} ` +
+            `${buildArg('contact', contact)} ` +
+            `${buildArg('id', id)} ` +
+            `${buildArg('publickey', publickey)}`
+
+        console.log('maxcontacts command: ', command)
+        return new Promise((resolve, reject) => {
+            MDS.cmd(command, (res: any) => {
+                if (res.status) {
+                    resolve(res.response)
+                } else {
+                    reject(res)
+                }
+            })
+        })
     }
 
     /**

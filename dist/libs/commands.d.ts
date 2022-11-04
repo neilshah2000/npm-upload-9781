@@ -403,10 +403,16 @@ export declare namespace commands {
      *
      */
     export const maxima: ({ action, name, id, to, publickey, application, data, logs }?: MaximaArgsTypes) => Promise<any>;
+    type MaxcontactsArgsTypes = {
+        action: 'list' | 'mls' | 'add' | 'remove' | 'search';
+        contact?: string;
+        id?: string;
+        publickey?: string;
+    };
     /**
      * [action:list|mls|add|remove|search] (contact:) (id:) (publickey:) - Manage your Maxima contacts
      */
-    export const maxcontacts: () => never;
+    export const maxcontacts: ({ action, contact, id, publickey }: MaxcontactsArgsTypes) => Promise<unknown>;
     /**
      * (uid:uid) [data:message] - Send a message over the network to one of your direct peers
      */
