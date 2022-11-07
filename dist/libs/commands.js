@@ -697,7 +697,7 @@ var commands;
      * [action:list|mls|add|remove|search] (contact:) (id:) (publickey:) - Manage your Maxima contacts
      */
     commands.maxcontacts = function (_a) {
-        var _b = _a.action, action = _b === void 0 ? 'list' : _b, contact = _a.contact, id = _a.id, publickey = _a.publickey;
+        var _b = _a === void 0 ? { action: 'list' } : _a, action = _b.action, contact = _b.contact, id = _b.id, publickey = _b.publickey;
         var command = "maxcontacts " +
             "".concat(buildArg('action', action), " ") +
             "".concat(buildArg('contact', contact), " ") +

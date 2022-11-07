@@ -1,6 +1,6 @@
 import { MDS } from '../mds'
 import { Decimal } from 'decimal.js'
-import { Address, Coin, TransactionListItem, Txpow } from './../types/minima'
+import { Address, Coin, MaxContact, TransactionListItem, Txpow } from './../types/minima'
 
 export namespace commands {
     /**
@@ -860,7 +860,7 @@ export namespace commands {
     /**
      * [action:list|mls|add|remove|search] (contact:) (id:) (publickey:) - Manage your Maxima contacts
      */
-    export const maxcontacts = ({ action = 'list', contact, id, publickey }: MaxcontactsArgsTypes) => {
+    export const maxcontacts = ({ action, contact, id, publickey }: MaxcontactsArgsTypes = { action: 'list' }): Promise<MaxContact[]> => {
         const command =
             `maxcontacts ` +
             `${buildArg('action', action)} ` +
