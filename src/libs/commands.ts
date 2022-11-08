@@ -860,7 +860,7 @@ export namespace commands {
     /**
      * [action:list|mls|add|remove|search] (contact:) (id:) (publickey:) - Manage your Maxima contacts
      */
-    export const maxcontacts = ({ action, contact, id, publickey }: MaxcontactsArgsTypes = { action: 'list' }): Promise<MaxContact[]> => {
+    export const maxcontacts = ({ action, contact, id, publickey }: MaxcontactsArgsTypes = { action: 'list' }): Promise<{ contacts: MaxContact[] }> => {
         const command =
             `maxcontacts ` +
             `${buildArg('action', action)} ` +

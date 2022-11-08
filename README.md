@@ -1,35 +1,40 @@
 ## Install
+
 `npm i npm-upload-9781`
 
 ## About
+
 This module exposes the core MDS library, plus some helper libs - events, commands and sql
 
 ## Import
 
-Import libs like   
+Import libs like  
 `import { Decimal, commands, sql, MDS, Coin, Token, TransactionListItem } from 'npm-upload-9781'`
 
 ## Exposes
 
-`events` - Minima Events helper lib.  
+`events` - Minima Events helper lib.
 
-`commands` - Minima Commands helper lib.  
+`commands` - Minima Commands helper lib.
 
-`sql` - Minima Sql helper lib.  
+`sql` - Minima Sql helper lib.
 
-`MDS` - Paddy's core MDS.js library. Don't need to use because everything is wrapped in the events, commands and sql libs. But it's here if you need an escape hatch.  
+`MDS` - Paddy's core MDS.js library. Don't need to use because everything is wrapped in the events, commands and sql libs. But it's here if you need an escape hatch.
 
-`Decimal` - Helper libs use Decimal.js for floating point numbers. Use this import rather than import Decimal.js directly so your app code and lib code is on the same version.  
+`Decimal` - Helper libs use Decimal.js for floating point numbers. Use this import rather than import Decimal.js directly so your app code and lib code is on the same version.
 
-`Status, NetworkPeer, Token, TokenNFTDetail, NetworkStatus, Address, Coin, MMRProof, PublicKey, SignatureWitnessProof, SignatureWitness, Script, Proof, Witness, Magic, WitnessBurn, TransactionBurn, TransactionInput, TransactionOutput, Transaction, TransactionListItem, TransactionBody, SuperParents, TransactionHeader, Txpow, Value, TokenGenerator, State, MaximaMessage` - Core types used in and returned by Minima.  
-
+`Status, NetworkPeer, Token, TokenNFTDetail, NetworkStatus, Address, Coin, MMRProof, PublicKey, SignatureWitnessProof, SignatureWitness, Script, Proof, Witness, Magic, WitnessBurn, TransactionBurn, TransactionInput, TransactionOutput, Transaction, TransactionListItem, TransactionBody, SuperParents, TransactionHeader, Txpow, Value, TokenGenerator, State, MaximaMessage` - Core types used in and returned by Minima.
 
 ## TODO
-- Implement all methods in commands
-- Update command methods with tsdoc annotation
-- Check existing type info and add more
-- Update events with latest minima
 
+-   Implement all methods in commands
+-   Update command methods with tsdoc annotation
+-   Check existing type info and add more
+-   Update events with latest minima
+
+## Usage
+
+-   call events.onInit() to initialise minima when you start your app (eg in App.jsx)
 
 ## Sample App
 

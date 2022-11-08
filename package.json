@@ -1,6 +1,6 @@
 {
     "name": "npm-upload-9781",
-    "version": "1.0.44",
+    "version": "1.0.50",
     "description": "",
     "main": "./dist/index.js",
     "scripts": {

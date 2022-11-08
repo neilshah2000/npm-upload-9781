@@ -412,7 +412,9 @@ export declare namespace commands {
     /**
      * [action:list|mls|add|remove|search] (contact:) (id:) (publickey:) - Manage your Maxima contacts
      */
-    export const maxcontacts: ({ action, contact, id, publickey }?: MaxcontactsArgsTypes) => Promise<MaxContact[]>;
+    export const maxcontacts: ({ action, contact, id, publickey }?: MaxcontactsArgsTypes) => Promise<{
+        contacts: MaxContact[];
+    }>;
     /**
      * (uid:uid) [data:message] - Send a message over the network to one of your direct peers
      */
