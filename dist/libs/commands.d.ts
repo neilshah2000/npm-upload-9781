@@ -1,5 +1,5 @@
 import { Decimal } from 'decimal.js';
-import { Address, Coin, MaxContact, TransactionListItem, Txpow } from './../types/minima';
+import { Address, Coin, MaxContact, TransactionListItem, Txpow, Maxima } from './../types/minima';
 export declare namespace commands {
     /**
      * Show Help. [] are required. () are optional. Chain multiple commands with ;
@@ -402,7 +402,7 @@ export declare namespace commands {
      * @param logs
      *
      */
-    export const maxima: ({ action, name, id, to, publickey, application, data, logs }?: MaximaArgsTypes) => Promise<any>;
+    export const maxima: ({ action, name, id, to, publickey, application, data, logs }?: MaximaArgsTypes) => Promise<Maxima>;
     type MaxcontactsArgsTypes = {
         action: 'list' | 'mls' | 'add' | 'remove' | 'search';
         contact?: string;
