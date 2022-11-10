@@ -364,3 +364,12 @@ export interface MaxContact {
     publickey: string
     samechain: boolean
 }
+
+export interface Maxima {
+    logs: boolean
+    name: string
+    publickey: string
+    mls: string
+    localidentity: string
+    contact: string
+}

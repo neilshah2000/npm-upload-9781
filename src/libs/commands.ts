@@ -1,6 +1,6 @@
 import { MDS } from '../mds'
 import { Decimal } from 'decimal.js'
-import { Address, Coin, MaxContact, TransactionListItem, Txpow } from './../types/minima'
+import { Address, Coin, MaxContact, TransactionListItem, Txpow, Maxima } from './../types/minima'
 
 export namespace commands {
     /**
@@ -827,7 +827,7 @@ export namespace commands {
      * @param logs
      *
      */
-    export const maxima = ({ action, name, id, to, publickey, application, data, logs }: MaximaArgsTypes = {}): Promise<any> => {
+    export const maxima = ({ action, name, id, to, publickey, application, data, logs }: MaximaArgsTypes = {}): Promise<Maxima> => {
         const command =
             `maxima ` +
             `${buildArg('action', action)} ` +
