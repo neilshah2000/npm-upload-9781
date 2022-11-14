@@ -58,6 +58,19 @@ interface Timer10s {
     data: {}
 }
 
+interface MaxHosts {
+    event: 'MAXIMAHOSTS'
+    data: {
+        connected: boolean
+        host: string
+    }
+}
+
+interface MaxContacts {
+    event: 'MAXIMACONTACTS'
+    data: {}
+}
+
 //////////////////////// empty functions before registration //////////////////////
 let whenNewBlock = (d: NewBlockData) => {
     //   console.log("NEWBLOCK event ... please resgister custom callback", d);
@@ -81,48 +94,71 @@ let whenComms = (d: CommsData['data']) => {
     //   console.log("COMMS event, please register an event for comms for a custom callback", d);
 }
 let whenTimer = () => {}
+let whenMaxhosts = (d: MaxHosts['data']) => {}
+let whenMaxcontacts = () => {}
 
 ///////////////////////////
 
 const initializeMinima = () => {
-    MDS.init((nodeEvent: InitResponse | MiningResponse | NewBlockResponse | MinimaLogResponse | NewBalanceResponse | MaximaResponse | CommsData | Timer10s) => {
-        // console.log(nodeEvent)
+    MDS.init(
+        (
+            nodeEvent:
+                | InitResponse
+                | MiningResponse
+                | NewBlockResponse
+                | MinimaLogResponse
+                | NewBalanceResponse
+                | MaximaResponse
+                | CommsData
+                | Timer10s
+                | MaxHosts
+                | MaxContacts
+        ) => {
+            // console.log(nodeEvent)
 
-        switch (nodeEvent.event) {
-            case 'inited':
-                whenInit()
-                break
-            case 'NEWBLOCK':
-                const newBlockData = nodeEvent.data
-                whenNewBlock(newBlockData)
-                break
-            case 'MINING':
-                const minimgData = nodeEvent.data
-                whenMining(minimgData)
-                break
-            case 'MAXIMA':
-                const maximaData = nodeEvent.data
-                whenMaxima(maximaData)
-                break
-            case 'NEWBALANCE':
-                const newBalanceData = nodeEvent.data
-                whenNewBalance(newBalanceData)
-                break
-            case 'MINIMALOG':
-                const minimaLogeData = nodeEvent.data
-                whenMinimaLog(minimaLogeData)
-                break
-            case 'MDSCOMMS':
-                const commsData = nodeEvent.data
-                whenComms(commsData)
-                break
-            case 'MDS_TIMER_10SECONDS':
-                whenTimer() // no data passed
-                break
-            default:
-                console.error('Unknown event type: ', nodeEvent)
+            switch (nodeEvent.event) {
+                case 'inited':
+                    whenInit()
+                    break
+                case 'NEWBLOCK':
+                    const newBlockData = nodeEvent.data
+                    whenNewBlock(newBlockData)
+                    break
+                case 'MINING':
+                    const minimgData = nodeEvent.data
+                    whenMining(minimgData)
+                    break
+                case 'MAXIMA':
+                    const maximaData = nodeEvent.data
+                    whenMaxima(maximaData)
+                    break
+                case 'NEWBALANCE':
+                    const newBalanceData = nodeEvent.data
+                    whenNewBalance(newBalanceData)
+                    break
+                case 'MINIMALOG':
+                    const minimaLogeData = nodeEvent.data
+                    whenMinimaLog(minimaLogeData)
+                    break
+                case 'MDSCOMMS':
+                    const commsData = nodeEvent.data
+                    whenComms(commsData)
+                    break
+                case 'MDS_TIMER_10SECONDS':
+                    whenTimer() // no data passed
+                    break
+                case 'MAXIMAHOSTS':
+                    const maxhostsData = nodeEvent.data
+                    whenMaxhosts(maxhostsData) // no data passed
+                    break
+                case 'MAXIMACONTACTS':
+                    whenMaxcontacts() // no data passed, call maxcontacts command to get latest
+                    break
+                default:
+                    console.error('Unknown event type: ', nodeEvent)
+            }
         }
-    })
+    )
 }
 
 ///////////////////////// application registers custom callbacks ///////////////////////
@@ -161,6 +197,14 @@ function onTimer(callback: () => void) {
     whenTimer = callback
 }
 
+function onMaxhosts(callback: (data: MaxHosts['data']) => void) {
+    whenMaxhosts = callback
+}
+
+function onMaxcontacts(callback: () => void) {
+    whenMaxcontacts = callback
+}
+
 export const events = {
     onNewBlock,
     onMining,
@@ -170,4 +214,6 @@ export const events = {
     onMinimaLog,
     onComms,
     onTimer,
+    onMaxhosts,
+    onMaxcontacts,
 }

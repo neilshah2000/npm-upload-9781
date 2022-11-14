@@ -25,6 +25,8 @@ var whenComms = function (d) {
     //   console.log("COMMS event, please register an event for comms for a custom callback", d);
 };
 var whenTimer = function () { };
+var whenMaxhosts = function (d) { };
+var whenMaxcontacts = function () { };
 ///////////////////////////
 var initializeMinima = function () {
     mds_1.MDS.init(function (nodeEvent) {
@@ -60,6 +62,13 @@ var initializeMinima = function () {
             case 'MDS_TIMER_10SECONDS':
                 whenTimer(); // no data passed
                 break;
+            case 'MAXIMAHOSTS':
+                var maxhostsData = nodeEvent.data;
+                whenMaxhosts(maxhostsData); // no data passed
+                break;
+            case 'MAXIMACONTACTS':
+                whenMaxcontacts(); // no data passed, call maxcontacts command to get latest
+                break;
             default:
                 console.error('Unknown event type: ', nodeEvent);
         }
@@ -92,6 +101,12 @@ function onComms(callback) {
 function onTimer(callback) {
     whenTimer = callback;
 }
+function onMaxhosts(callback) {
+    whenMaxhosts = callback;
+}
+function onMaxcontacts(callback) {
+    whenMaxcontacts = callback;
+}
 exports.events = {
     onNewBlock: onNewBlock,
     onMining: onMining,
@@ -101,4 +116,6 @@ exports.events = {
     onMinimaLog: onMinimaLog,
     onComms: onComms,
     onTimer: onTimer,
+    onMaxhosts: onMaxhosts,
+    onMaxcontacts: onMaxcontacts,
 };
